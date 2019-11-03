@@ -1,12 +1,19 @@
 public class Subject
 {
-    private String subName;
+    private modules subName;
 
     public Subject() {
     }
 
-    public Subject(String subName) {
+    public Subject(modules subName) {
         this.subName = subName;
     }
 
+    public modules getSubName() {
+        return subName;
+    }
+
+    public void setSubName(modules subName) {
+        this.subName = subName;
+    }
 }
