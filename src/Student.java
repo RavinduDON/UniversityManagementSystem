@@ -1,5 +1,6 @@
 public class Student
 {
+    String val;
     private int id;
     private String stdName;
     private int stdAge;
@@ -18,7 +19,6 @@ public class Student
         this.passowrd = passowrd;
         this.cource = cource;
     }
-
     public String getCource() {
         return cource;
     }
