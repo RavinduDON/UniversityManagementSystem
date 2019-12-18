@@ -141,8 +141,7 @@ public class Main {
                         System.out.println("[1]" + modules.SENG1111_Introduction_to_Programming);
                         System.out.println("[2]" + modules.SENG1112_Fndamantales_of_Engineering);
                         System.out.println("[3]" + modules.SENG1113_Data_Structures_and_Algorithms);
-                        subject=input.nextLine();
-                        input.nextLine();
+                        subject=input.next();
                         Subject mod=new Subject();
                         String []val = subject.split(",");
                         Lecturer lecturer = new Lecturer();
@@ -152,21 +151,32 @@ public class Main {
                         lecturer.setId(id);
                         lecturer.setUserName(userName);
                         lecturer.setPassword(password);
-                        PreparedStatement stm = connection.prepareStatement("Insert Into Lecturer Values(?,?,?,?,?,?);");
+                        int i=0;
+                        PreparedStatement stm = connection.prepareStatement("Insert Into Lecturer Values(?,?,?,?,?);");
                         stm.setObject(1, lecturer.getId());
                         stm.setObject(2, lecturer.getName());
                         stm.setObject(3, lecturer.getAge());
                         stm.setObject(4, lecturer.getUserName());
                         stm.setObject(5, lecturer.getPassword());
-                        stm.setObject(6, lecturer.getCourse());
                         stm.executeUpdate();
                         System.out.println("Lecturer Registration Completed");
                         System.out.println("Name    :" + lecturer.getName());
                         System.out.println("Age     :" + lecturer.getAge());
-                        System.out.println("Subject :" + sub.getSubName());
+                        //System.out.println("Subject :" + sub.getSubName());
+                        for(String ttr: val) {
+                            int subId=Integer.parseInt(ttr);
+                            mod.setId(subId);
+                            System.out.println(subId);
+
+                            PreparedStatement stmm = connection.prepareStatement("INSERT INTO lec_sub VALUES (?,?)");
+                            stmm.setObject(1, mod.getId());
+                            stmm.setObject(2, lecturer.getId());
+                            stmm.executeUpdate();
+                            i++;
+                        }
                         break;
                     case 2:
-                        System.out.println("Lecturer Login form");
+                        System.out.println("Lecture Login form");
 
                         System.out.println("User Name:");
                         userName=input.next();
@@ -174,11 +184,16 @@ public class Main {
                         password=input.next();
 
                         Statement  stmt=connection.createStatement();
-                        ResultSet   rs=stmt.executeQuery( "select * from Lecturer where userName='"+userName+"'and password='"+password+"';");
+                        //ResultSet rst=stmt.executeQuery("SELECT subName from subject where id in (SELECT subId from std_sub where stdId=(Select id from student where userName='"+userName+"'and password='"+password+"'));");
+                        ResultSet rs=stmt.executeQuery( "select * from lecturer where userName='"+userName+"'and password='"+password+"';");
                         while (rs.next()) {
                             System.out.println( "Hi " + rs.getString(2));
-                            System.out.println("You have successfully registered for this course:");
-                            System.out.println(" "+rs.getString(6));
+
+                        }
+                        ResultSet rst=stmt.executeQuery("SELECT subName from subject where id in (SELECT subId from lec_sub where lecId=(Select id from lecturer where userName='"+userName+"'and password='"+password+"'));");
+                        System.out.println("You have successfully registered for this courses:");
+                        while(rst.next()){
+                            System.out.println(" "+rst.getString(1));
                         }
                         break;
                     default:
