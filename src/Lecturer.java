@@ -1,31 +1,44 @@
+
+import java.util.ArrayList;
+
 public class Lecturer {
     private int id;
     private String name;
     private int age;
     private String userName;
     private String password;
-    private String course;
+    private ArrayList<Subject> subjectList;
 
     public Lecturer() {
     }
 
-    public Lecturer(int id, String name, int age, String userName, String password, String course) {
+    public Lecturer(int id, String name, int age, String userName, String password, ArrayList<Subject> subjectList) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.userName = userName;
         this.password = password;
-        this.course = course;
+        this.subjectList = subjectList;
     }
 
-    public String getCourse() {
-        return course;
+    public Lecturer(String name, int age, String userName, String password, ArrayList<Subject> subjectList) {
+        this.name = name;
+        this.age = age;
+        this.userName = userName;
+        this.password = password;
+        this.subjectList = subjectList;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
+    public ArrayList<Subject> getSubjectList() {
+        return subjectList;
     }
 
+    public void setSubjectList(ArrayList<Subject> subjectList) {
+        this.subjectList = subjectList;
+    }
+
+    
+    
     public int getId() {
         return id;
     }

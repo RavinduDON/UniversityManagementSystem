@@ -1,31 +1,54 @@
+
+import java.util.ArrayList;
+
 public class Student
 {
-    String val;
+    
     private int id;
     private String stdName;
     private int stdAge;
     private String userName;
     private String passowrd;
-    private String cource;
+    private ArrayList<Subject> subjectList;
+  
 
     public Student() {
     }
 
-    public Student(int id, String stdName, int stdAge, String userName, String passowrd, String cource) {
+    public Student(int id, String stdName, int stdAge, String userName, String passowrd, ArrayList<Subject> subjectList) {
         this.id = id;
         this.stdName = stdName;
         this.stdAge = stdAge;
         this.userName = userName;
         this.passowrd = passowrd;
-        this.cource = cource;
-    }
-    public String getCource() {
-        return cource;
+        this.subjectList = subjectList;
     }
 
-    public void setCource(String cource) {
-        this.cource = cource;
+    public Student(String stdName, int stdAge, String userName, String passowrd, ArrayList<Subject> subjectList) {
+        this.stdName = stdName;
+        this.stdAge = stdAge;
+        this.userName = userName;
+        this.passowrd = passowrd;
+        this.subjectList = subjectList;
     }
+
+    public Student(int id, String stdName, int stdAge, String userName, String passowrd) {
+        this.id = id;
+        this.stdName = stdName;
+        this.stdAge = stdAge;
+        this.userName = userName;
+        this.passowrd = passowrd;
+    }
+
+    public ArrayList<Subject> getSubjectList() {
+        return subjectList;
+    }
+
+    public void setSubjectList(ArrayList<Subject> subjectList) {
+        this.subjectList = subjectList;
+    }
+
+    
 
     public int getId() {
         return id;
