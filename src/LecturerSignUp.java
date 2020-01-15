@@ -1,5 +1,10 @@
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,6 +18,16 @@ import java.util.ArrayList;
  */
 public class LecturerSignUp extends javax.swing.JFrame {
 
+    private int id;
+    private String lecName;
+    private int lecAge;
+    private String userName;
+    private String passowrd;
+    private Lecturer lecturer=new Lecturer();
+    private ArrayList<Subject> subjectList=new ArrayList<>();
+    private LecturerController lecController=new LecturerController();
+    public static LecturerSignUp lecSignUp=new LecturerSignUp();
+        
     /**
      * Creates new form MainWindow
      */
@@ -43,7 +58,7 @@ public class LecturerSignUp extends javax.swing.JFrame {
         txtName = new javax.swing.JTextField();
         txtAge = new javax.swing.JTextField();
         checkSub1 = new javax.swing.JCheckBox();
-        chekSub3 = new javax.swing.JCheckBox();
+        checkSub3 = new javax.swing.JCheckBox();
         checkSub2 = new javax.swing.JCheckBox();
         btnSignUp = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -73,35 +88,14 @@ public class LecturerSignUp extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel10.setText("Age");
 
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
-
         checkSub1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         checkSub1.setText("SENG1111_Introduction_to_Programming");
-        checkSub1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkSub1ActionPerformed(evt);
-            }
-        });
 
-        chekSub3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        chekSub3.setText("SENG1113_Data_Structures_and_Algorithms");
-        chekSub3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chekSub3ActionPerformed(evt);
-            }
-        });
+        checkSub3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        checkSub3.setText("SENG1113_Data_Structures_and_Algorithms");
 
         checkSub2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         checkSub2.setText("SENG1112_Fndamantales_of_Engineering");
-        checkSub2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkSub2ActionPerformed(evt);
-            }
-        });
 
         btnSignUp.setText("Sign Up");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +129,7 @@ public class LecturerSignUp extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                                         .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(checkSub1)
-                                    .addComponent(chekSub3)
+                                    .addComponent(checkSub3)
                                     .addComponent(checkSub2))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +189,7 @@ public class LecturerSignUp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(checkSub2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chekSub3)
+                .addComponent(checkSub3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSignUp)
@@ -207,25 +201,40 @@ public class LecturerSignUp extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void checkSub1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSub1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_checkSub1ActionPerformed
-
-    private void chekSub3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chekSub3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chekSub3ActionPerformed
-
-    private void checkSub2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSub2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkSub2ActionPerformed
-
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            JFrame frame=new JFrame();
+            id=Integer.parseInt(txtUserId.getText());
+            userName=txtUserName.getText();
+            lecName=txtName.getText();
+            lecAge=Integer.parseInt(txtAge.getText());
+            passowrd=txtPassword.getText();
+            lecturer=lecController.lecSignIn(userName, passowrd);
+            if(lecturer!=null){
+                JOptionPane.showMessageDialog(frame, "Username or password Already Taken by another user..");
+            }else{
+                if(checkSub1.isSelected()){
+                Subject subject1=new Subject(1,String.valueOf(modules.SENG1111_Introduction_to_Programming));
+                subjectList.add(subject1);
+            }
+            if(checkSub2.isSelected()){
+                Subject subject2=new Subject(2,String.valueOf(modules.SENG1112_Fndamantales_of_Engineering));
+                subjectList.add(subject2);
+            }
+            if(checkSub3.isSelected()){
+                Subject subject3=new Subject(3,String.valueOf(modules.SENG1113_Data_Structures_and_Algorithms));
+                subjectList.add(subject3);
+            }
+            lecController.lecSignUp(id, lecName, lecAge, userName, passowrd, subjectList);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LecturerSignUp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturerSignUp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**
@@ -259,7 +268,7 @@ public class LecturerSignUp extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentSignIn().setVisible(true);
+                lecSignUp.setVisible(true);
             }
         });
     }
@@ -269,7 +278,7 @@ public class LecturerSignUp extends javax.swing.JFrame {
     private javax.swing.JButton btnSignUp;
     private javax.swing.JCheckBox checkSub1;
     private javax.swing.JCheckBox checkSub2;
-    private javax.swing.JCheckBox chekSub3;
+    private javax.swing.JCheckBox checkSub3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

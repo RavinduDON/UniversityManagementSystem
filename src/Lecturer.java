@@ -29,6 +29,15 @@ public class Lecturer {
         this.subjectList = subjectList;
     }
 
+    public Lecturer(int id, String name, int age, String userName, String password) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.userName = userName;
+        this.password = password;
+    }
+    
+
     public ArrayList<Subject> getSubjectList() {
         return subjectList;
     }

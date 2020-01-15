@@ -1,3 +1,8 @@
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,8 +18,32 @@ public class LecturereUserProfie extends javax.swing.JFrame {
     /**
      * Creates new form StudentProfile
      */
+    private Lecturer lecturer;
+    
     public LecturereUserProfie() {
+        
+    }
+
+    public LecturereUserProfie(Lecturer lecturer) throws ClassNotFoundException, SQLException {
+        this.lecturer = lecturer;
         initComponents();
+        loadLecture();
+    }
+    
+    public void loadLecture() throws ClassNotFoundException, SQLException{
+        LecturerController lecController=new LecturerController();
+        Lecturer tplecturer=lecController.lecSignIn(lecturer.getUserName(), lecturer.getPassword());
+        lblLecId.setText(Integer.toString(tplecturer.getId()));
+        lblLecName.setText(tplecturer.getName());
+        lblLecAge.setText(Integer.toString(tplecturer.getAge()));
+        ArrayList<Subject> subList=lecController.lecRegedSubjects(lecturer.getUserName(), lecturer.getPassword());
+        DefaultTableModel dtm=(DefaultTableModel) tblLecturerDetails.getModel();
+        dtm.setRowCount(0);
+         for(Subject subject:subList){
+            Object[] rowdata={subject.getId(),subject.getSubName()};
+            dtm.addRow(rowdata);
+        }
+                        
     }
 
     /**
@@ -31,11 +60,11 @@ public class LecturereUserProfie extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblLecId = new javax.swing.JLabel();
+        lblLecName = new javax.swing.JLabel();
+        lblLecAge = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblLecturerDetails = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,7 +83,7 @@ public class LecturereUserProfie extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Lecturer Age:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblLecturerDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -65,7 +94,7 @@ public class LecturereUserProfie extends javax.swing.JFrame {
                 "Course Code", "Course Name"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblLecturerDetails);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,9 +118,9 @@ public class LecturereUserProfie extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(140, 140, 140)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
+                                    .addComponent(lblLecId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblLecName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblLecAge, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -105,16 +134,16 @@ public class LecturereUserProfie extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblLecId, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLecName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblLecAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(1, 1, 1)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
@@ -165,10 +194,10 @@ public class LecturereUserProfie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblLecAge;
+    private javax.swing.JLabel lblLecId;
+    private javax.swing.JLabel lblLecName;
+    private javax.swing.JTable tblLecturerDetails;
     // End of variables declaration//GEN-END:variables
 }

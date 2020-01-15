@@ -211,7 +211,7 @@ public class StudentSignUp extends javax.swing.JFrame {
             passowrd=txtPAssword.getText();
             student=stdController.stdSignIn(userName, passowrd);
             if(student!=null){
-                JOptionPane.showMessageDialog(frame, "UserName and Password Already Taken Try another..");
+                JOptionPane.showMessageDialog(frame, "UserName and Password Already Taken Try another user..");
             
             }else{
                 if(checksub1.isSelected()){
