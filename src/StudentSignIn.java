@@ -26,6 +26,8 @@ public class StudentSignIn extends javax.swing.JFrame {
     /**
      * Creates new form MainWindow
      */
+    
+
     public StudentSignIn() {
         initComponents();
     }
@@ -136,8 +138,11 @@ public class StudentSignIn extends javax.swing.JFrame {
             if(student!=null){
                 StudentProfile stdProfile=new StudentProfile(student);
                 stdProfile.setVisible(true);
-                stdSignIn.setVisible(false);
-                stdSignIn.dispose();
+                this.setVisible(false);
+                this.dispose();
+//                stdSignIn.setVisible(false);
+//                stdSignIn.dispose();
+          
             }else{
                 JOptionPane.showMessageDialog(frame, "Can not find student");
             }

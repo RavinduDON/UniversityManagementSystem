@@ -10,10 +10,11 @@
  */
 public class HomePage extends javax.swing.JFrame {
 
+    public static StudentSignIn stdSignIn=new StudentSignIn();
     public static StudentSignUp stdSignUp=new StudentSignUp();
     public static LecturerSignUp lecSignUp=new LecturerSignUp();
-    public static StudentSignIn stdSignIn=new StudentSignIn();
     public static LecturerSignIn lecSignIn=new LecturerSignIn();
+    public static HomePage homePage=new HomePage();
     /**
      * Creates new form HomePage
      */
@@ -114,7 +115,9 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         stdSignUp.setVisible(true);
-       
+       homePage.setVisible(false);
+       homePage.dispose();
+            
                
       
     }//GEN-LAST:event_btnSTDSignUpActionPerformed
@@ -123,6 +126,9 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         lecSignUp.setVisible(true);
+        homePage.setVisible(false);
+       homePage.dispose();
+        
         
               
                
@@ -130,8 +136,10 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnSTDSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSTDSignInActionPerformed
         // TODO add your handling code here:
-        
+       
         stdSignIn.setVisible(true);
+        homePage.setVisible(false);
+       homePage.dispose();
         
     }//GEN-LAST:event_btnSTDSignInActionPerformed
 
@@ -139,6 +147,9 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         lecSignIn.setVisible(true);
+        homePage.setVisible(false);
+       homePage.dispose();
+        
     }//GEN-LAST:event_btnLECSignInActionPerformed
 
     /**
@@ -171,7 +182,7 @@ public class HomePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                HomePage homePage=new HomePage();
+                
                 homePage.setVisible(true);
             }
         });

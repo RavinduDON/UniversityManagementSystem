@@ -138,8 +138,10 @@ public class LecturerSignIn extends javax.swing.JFrame {
             if(lecturer!=null){
                 LecturereUserProfie lecProfie=new LecturereUserProfie(lecturer);
                 lecProfie.setVisible(true);
-                lecSignIn.setVisible(false);
-                lecSignIn.dispose();
+                this.setVisible(false);
+                this.dispose();
+//                lecSignIn.setVisible(false);
+//                lecSignIn.dispose();
             }
             else{
                 JOptionPane.showMessageDialog(frame, "Can not find lecturer");
