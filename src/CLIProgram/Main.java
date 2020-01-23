@@ -1,3 +1,10 @@
+package CLIProgram;
+
+import Entity.Student;
+import Entity.Lecturer;
+import Entity.Subject;
+import DBConnection.DBConnection;
+import Entity.modules;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.sql.*;

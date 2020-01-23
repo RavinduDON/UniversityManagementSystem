@@ -1,3 +1,5 @@
+package Entity;
+
 public class Subject
 {
     private int id;

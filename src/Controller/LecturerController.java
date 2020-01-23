@@ -1,4 +1,9 @@
+package Controller;
 
+
+import Entity.Lecturer;
+import Entity.Subject;
+import DBConnection.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
