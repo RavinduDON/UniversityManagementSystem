@@ -16,7 +16,7 @@ public class HomePage extends javax.swing.JFrame {
     public static StudentSignUp stdSignUp=new StudentSignUp();
     public static LecturerSignUp lecSignUp=new LecturerSignUp();
     public static LecturerSignIn lecSignIn=new LecturerSignIn();
-    public static HomePage homePage=new HomePage();
+    
     /**
      * Creates new form HomePage
      */
@@ -117,8 +117,8 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         stdSignUp.setVisible(true);
-       homePage.setVisible(false);
-       homePage.dispose();
+        this.setVisible(false);
+        this.dispose();
             
                
       
@@ -128,8 +128,8 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         lecSignUp.setVisible(true);
-        homePage.setVisible(false);
-       homePage.dispose();
+        this.setVisible(false);
+        this.dispose();
         
         
               
@@ -140,8 +140,8 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
        
         stdSignIn.setVisible(true);
-        homePage.setVisible(false);
-       homePage.dispose();
+        this.setVisible(false);
+        this.dispose();
         
     }//GEN-LAST:event_btnSTDSignInActionPerformed
 
@@ -149,8 +149,8 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         lecSignIn.setVisible(true);
-        homePage.setVisible(false);
-       homePage.dispose();
+        this.setVisible(false);
+        this.dispose();
         
     }//GEN-LAST:event_btnLECSignInActionPerformed
 
@@ -185,7 +185,7 @@ public class HomePage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-                homePage.setVisible(true);
+                new HomePage().setVisible(true);
             }
         });
        

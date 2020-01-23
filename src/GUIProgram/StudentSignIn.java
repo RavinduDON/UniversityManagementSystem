@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class StudentSignIn extends javax.swing.JFrame {
 
-    
+    private HomePage homePage=new Ho
     private String userName;
     private String password;
     StudentController stdController=new StudentController();
@@ -51,7 +51,7 @@ public class StudentSignIn extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
         btnSignIn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,7 +75,12 @@ public class StudentSignIn extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancel");
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,7 +108,7 @@ public class StudentSignIn extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnSignIn)
                 .addGap(52, 52, 52)
-                .addComponent(jButton2)
+                .addComponent(btnCancel)
                 .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
@@ -124,7 +129,7 @@ public class StudentSignIn extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSignIn)
-                    .addComponent(jButton2))
+                    .addComponent(btnCancel))
                 .addContainerGap(124, Short.MAX_VALUE))
         );
 
@@ -157,6 +162,11 @@ public class StudentSignIn extends javax.swing.JFrame {
             Logger.getLogger(StudentSignIn.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSignInActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,8 +205,8 @@ public class StudentSignIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSignIn;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
