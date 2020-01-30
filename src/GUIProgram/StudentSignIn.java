@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class StudentSignIn extends javax.swing.JFrame {
 
-    private HomePage homePage=new Ho
+    private HomePage homePage=new HomePage();
     private String userName;
     private String password;
     StudentController stdController=new StudentController();
